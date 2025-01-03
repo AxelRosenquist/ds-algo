@@ -8,7 +8,15 @@ class LinkedList:
     def __init__(self, head=None):
         self.head = head            
 
-    def add(self, data):
+    def print_list(self):
+        current_node = self.head
+        while current_node is not None:
+            print(current_node.data, '->' )
+            current_node = current_node.link
+        print(f'None\n')
+    
+    # Function to add another element to the end of the list
+    def add_node(self, data):
         node = Node(data)
         if self.head is None:
             self.head = node
@@ -21,14 +29,27 @@ class LinkedList:
                 break
             current_node = current_node.link
         
-    def print_list(self):
-        current_node = self.head
-        while current_node is not None:
-            print(current_node.data, '->' )
-            current_node = current_node.link
-        print(f'None\n')
 
-    def remove(self, to_remove):
+    # Function to insert nodes in the list
+    def insert_node(self, to_insert, index):
+        counter = 0
+        prev_node, curr_node = Node(data=0, link=self.head), self.head
+        while curr_node:
+            if index == 0:
+                self.head = Node(data=to_insert, link=curr_node)
+                print()
+                return
+            elif index == counter and index != 0:                
+                prev_node.link = Node(data=to_insert, link=curr_node)
+                return
+            else: 
+                prev_node = curr_node
+                curr_node = curr_node.link
+                counter += 1
+        return
+    
+    # Function to remove any element from the list
+    def remove_node(self, to_remove):
         prev_node, curr_node = Node(data=0, link=self.head), self.head
 
         while curr_node:
@@ -43,23 +64,27 @@ class LinkedList:
             curr_node = next_node
             
         return
-        
+    
         
 
-
+print('Creating the linked list')
 linked_list = LinkedList()
-linked_list.add(1)
-linked_list.add(5)
-linked_list.add(16)
-linked_list.add(19)
-linked_list.add(27)
+linked_list.add_node(1)
+linked_list.add_node(5)
+linked_list.add_node(16)
+linked_list.add_node(19)
+linked_list.add_node(27)
 linked_list.print_list()
 
-linked_list.remove(to_remove=5)
+
+print('Removing some elements from the linked list')
+linked_list.remove_node(to_remove=5)
+linked_list.remove_node(to_remove=1)
+linked_list.remove_node(to_remove=27)
 linked_list.print_list()
 
-linked_list.remove(to_remove=1)
-linked_list.print_list()
 
-linked_list.remove(to_remove=27)
+print('Inserting some elements to the linked list')
+linked_list.insert_node(to_insert=2, index=0)
+linked_list.insert_node(to_insert=18, index=2)
 linked_list.print_list()
