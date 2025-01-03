@@ -34,12 +34,11 @@ class LinkedList:
     def insert_node(self, to_insert, index):
         counter = 0
         prev_node, curr_node = Node(data=0, link=self.head), self.head
+        if index == 0:
+            self.head = Node(data=to_insert, link=curr_node)
+            return
         while curr_node:
-            if index == 0:
-                self.head = Node(data=to_insert, link=curr_node)
-                print()
-                return
-            elif index == counter and index != 0:                
+            if index == counter:                
                 prev_node.link = Node(data=to_insert, link=curr_node)
                 return
             else: 
