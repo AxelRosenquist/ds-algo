@@ -9,10 +9,10 @@ class LinkedList:
         self.head = head            
 
     def print_list(self):
-        current_node = self.head
-        while current_node is not None:
-            print(current_node.data, '->' )
-            current_node = current_node.link
+        curr_node = self.head
+        while curr_node is not None:
+            print(curr_node.data, '->' )
+            curr_node = curr_node.link
         print(f'None\n')
     
     # Function to add another element to the end of the list
@@ -22,12 +22,12 @@ class LinkedList:
             self.head = node
             return
         
-        current_node = self.head
+        curr_node = self.head
         while True:
-            if current_node.link is None:
-                current_node.link = node
+            if curr_node.link is None:
+                curr_node.link = node
                 break
-            current_node = current_node.link
+            curr_node = curr_node.link
         
 
     # Function to insert nodes in the list
